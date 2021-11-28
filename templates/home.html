@@ -2,11 +2,43 @@
 <html>
 <head>
 <title>Girl Scouts Website</title>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<link rel="stylesheet" type="text/css" href="static/gallery_demo.css" />
+<link rel="stylesheet" href="static/gallery_style.css">
 </head>
 <body>
 <h1>Girl Scouts Website</h1>
 <p>Welcome!</p>
-<h3>{{ random_quote }}</h3>
-<img src="{{url_for('static', filename=random_image)}}" />
+<section>
+    <form action="/" method="post">
+        <div class="form-group">
+            <label class="sr-only" for="rating">Animal type:</label>
+            <select class="form-control" name="animal-type">
+                <option value="dog">dog</option>
+                <option value="cat">cat</option>
+                <option value="all" selected>all</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">Submit!</button>
+        </div>
+    </form>
+</section>
+<section>
+    <div class="rt-container">
+    <div class="col-rt-12">
+        <div class="grid">
+        {% for image in images %}
+            <div class="grid-item">
+                <figure>
+                    <img src='static/{{ image.get('filename') }}'  alt="">
+                    <figcaption>{{ image.get('caption') }}</figcaption>
+                </figure>
+            </div>
+         {% endfor %}
+        </div>
+    </div>
+    </div>
+</section>
 </body>
 </html>
